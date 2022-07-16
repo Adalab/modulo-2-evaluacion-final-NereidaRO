@@ -16,20 +16,35 @@ const buttonReset = document.querySelector('.js-button-reset');
 let foundedAnimes = [];
 let favourites = [];
 
-//Relacionado al servidor
+//Al cargar la página
 
-function renderAnime () {}; //tal vez esta va al cargar
+function renderAnime (array, list) {
+    for (let i = 0; i <= array.length; i++){
+        list.innerHTML += `<li>${array.image_url}<br>${array.title}</li>`;
+    }
+}
+
+//Relacionado al servidor
 
 function searchAnime () {
     const searchValue = inputSearch.value;
     fetch(`https://api.jikan.moe/v4/anime?q=${searchValue}`)
     .then ((response) => response.json)
-    .then ((data) => {
-        foundedAnimes.push(data);
-        //hay que renderizar lo que devuelva el server: solo el título y la img y en lugares concretos de la tarjeta
-    });
+    .then ((dataReturned) => {
+        foundedAnimes.push(dataReturned.title);
+        console.log(dataReturned.title);
+        renderAnime(foundedAnimes, searchListHTML);
+    }); //sale undefined y deja printear ochenta veces lo mismo
 
 }
 
+//Funciones manejadoras
 
-//Al cargar la página
+function handleSearch (event) {
+    event.preventDefault();
+    searchAnime ();
+};
+
+//Eventos
+
+buttonSearch.addEventListener('click', handleSearch);
