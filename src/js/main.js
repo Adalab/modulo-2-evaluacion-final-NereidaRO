@@ -18,32 +18,42 @@ let favourites = [];
 
 //Al cargar la página
 
-function renderAnime (array, list) {
-    for (let i = 0; i <= array.length; i++){
-        list.innerHTML += `<li>${array.image_url}<br>${array.title}</li>`;
+function writeAnime (array) {
+    let html ='';
+    //hay que hacer un filter para coger la imagen (array.image.jpg.image_url) jpg es otro objeto
+    for (let i=0; i<= array.length; i++){
+        html += `<li>
+        <img src="${array.images}" />
+        <h6>${array.title}<h6>
+        </li>`;
     }
+    return html;
+}
+
+function renderAnime (list, array) {
+    list.innerHTML = writeAnime(array);
 }
 
 //Relacionado al servidor
 
 function searchAnime () {
-    const searchValue = inputSearch.value;
+    const searchValue = inputSearch.value.toLowerCase();
     fetch(`https://api.jikan.moe/v4/anime?q=${searchValue}`)
-    .then ((response) => response.json)
+    .then ((response) => response.json())
     .then ((dataReturned) => {
-        foundedAnimes.push(dataReturned.title);
-        console.log(dataReturned.title);
-        renderAnime(foundedAnimes, searchListHTML);
-    }); //sale undefined y deja printear ochenta veces lo mismo
+        foundedAnimes = dataReturned.data;
+        console.log(foundedAnimes);
+        renderAnime (searchListHTML, foundedAnimes);
+    });
 
-}
+} //ya no replica los resultados, pero la img sale rota
 
 //Funciones manejadoras
 
 function handleSearch (event) {
     event.preventDefault();
     searchAnime ();
-};
+}
 
 //Eventos
 
