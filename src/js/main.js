@@ -28,14 +28,14 @@ function writeAnime (array) {
 
     for (const oneAnime of array){
         if (oneAnime.image === "https://cdn.myanimelist.net/img/sp/icon/apple-touch-icon-256.png") {
-            html += `<li class="js-li-anime">
+            html += `<li class="main__li js-li-anime">
         <img src="https://via.placeholder.com/210x295/ffffff/666666/?text=TV" />
-        <h6>${oneAnime.title}<h6>
+        <h6 class="main__h6">${oneAnime.title}<h6>
         </li>`
         } else {
-            html += `<li class="js-li-anime">
+            html += `<li class="main__li js-li-anime">
         <img src="${oneAnime.image}" />
-        <h6>${oneAnime.title}<h6>
+        <h6 class="main__h6">${oneAnime.title}<h6>
         </li>`
         }
 
@@ -98,7 +98,7 @@ function handleFav (event) {
     } else {
         favourites.splice(favSelected, 1);
     };
-
+    console.log(favourites);
     renderAnime(favourites, favListHTML);
 }
 

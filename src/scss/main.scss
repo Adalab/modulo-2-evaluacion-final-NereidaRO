@@ -7,3 +7,9 @@
 @import 'layout/footer';
 @import 'pages/index';
 */
+@import 'core/reset';
+@import 'core/variables';
+@import 'core/general';
+@import 'layout/header';
+@import 'layout/main';
+@import 'core/jscss';
