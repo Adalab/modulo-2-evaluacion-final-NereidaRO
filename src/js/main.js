@@ -20,17 +20,17 @@ let favourites = [];
 
 function writeAnime (array) {
     let html ='';
-    //hay que hacer un filter para coger la imagen (array.image.jpg.image_url) jpg es otro objeto
-    for (let i=0; i<= array.length; i++){
+    for (const oneAnime of array){
         html += `<li>
-        <img src="${array.images}" />
-        <h6>${array.title}<h6>
+        <img src="${oneAnime.image}" />
+        <h6>${oneAnime.title}<h6>
         </li>`;
     }
+    console.log(html);
     return html;
 }
 
-function renderAnime (list, array) {
+function renderAnime (array, list) {
     list.innerHTML = writeAnime(array);
 }
 
@@ -41,12 +41,17 @@ function searchAnime () {
     fetch(`https://api.jikan.moe/v4/anime?q=${searchValue}`)
     .then ((response) => response.json())
     .then ((dataReturned) => {
-        foundedAnimes = dataReturned.data;
+        let dataAnimes = dataReturned.data;
+        foundedAnimes = dataAnimes.map(({ mal_id, title, images }) => ({
+            id: mal_id,
+            title: title,
+            image: images.jpg.image_url,
+          }));
         console.log(foundedAnimes);
-        renderAnime (searchListHTML, foundedAnimes);
+        renderAnime (foundedAnimes, searchListHTML);
     });
 
-} //ya no replica los resultados, pero la img sale rota
+}
 
 //Funciones manejadoras
 
