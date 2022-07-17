@@ -23,25 +23,29 @@ function writeAnime (array) {
 
     for (const oneAnime of array){
         if (oneAnime.image === "https://cdn.myanimelist.net/img/sp/icon/apple-touch-icon-256.png") {
-            html += `<li>
+            html += `<li class="js-li-anime">
         <img src="https://via.placeholder.com/210x295/ffffff/666666/?text=TV" />
         <h6>${oneAnime.title}<h6>
         </li>`
         } else {
-            html += `<li>
+            html += `<li class="js-li-anime">
         <img src="${oneAnime.image}" />
         <h6>${oneAnime.title}<h6>
         </li>`
         }
 
     };
-
+    function listenAnime () {
+        const liAnime = document.querySelector('.js-li-anime');
+        liAnime.addEventListener('click', handleFav);
+    };
     console.log(html);
     return html;
 }
 
 function renderAnime (array, list) {
     list.innerHTML = writeAnime(array);
+    listenAnime();
 }
 
 //Relacionado al servidor
@@ -72,7 +76,15 @@ function handleSearch (event) {
 
 function handleReset(event){
     event.preventDefault();
-};
+    //duda en GitHub Project
+}
+
+function handleFav () {
+    //funcion para meter-sacar clicados en array
+    //funcion para toggle la clase del destaca
+    //funcion para meter el array en localStorage (recuerda llamarlo arriba)
+    //render
+}
 
 //Eventos
 
