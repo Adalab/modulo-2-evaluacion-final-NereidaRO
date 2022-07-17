@@ -13,8 +13,8 @@ const buttonReset = document.querySelector('.js-button-reset');
 
 //Llamada al localStorage
 
-const saved = localStorage.getItem("saved");
-console.log(saved);
+/*const saved = localStorage.getItem("saved");
+console.log(saved);*/
 
 //Arrays principales
 
@@ -44,20 +44,16 @@ function writeAnime (array) {
     return html;
 }
 
+function listenAnime (array) {
+    for (const oneAnime of array){
+        oneAnime.addEventListener('click', handleFav);
+    };
+}; //dice que no es una función: duda GitHub
+
 function renderAnime (array, list) {
     list.innerHTML = writeAnime(array);
-    function listenAnime () {
-        const liAnime = document.querySelector('.js-li-anime');
-        liAnime.addEventListener('click', handleFav);
-    };
-    listenAnime();
-}
-
-function classifyFav () {};
-
-function selectFav () {}; //via los que tengan la clase y tal
-
-function saveFav () {};
+    listenAnime(array);
+} //supuestamente tienen el listener: duda en GitHub
 
 //Relacionado al servidor
 
@@ -73,16 +69,15 @@ function searchAnime () {
             image: images.jpg.image_url,
           }));
         console.log(foundedAnimes);
-        renderAnime (foundedAnimes, searchListHTML);
+        renderAnime(foundedAnimes, searchListHTML);
     });
-
 }
 
 //Funciones manejadoras
 
 function handleSearch (event) {
     event.preventDefault();
-    searchAnime ();
+    searchAnime();
 }
 
 function handleReset(event){
@@ -90,14 +85,24 @@ function handleReset(event){
     //duda en GitHub Project
 }
 
-function handleFav () {
-    classifyFav ()//funcion para toggle la clase del destaca
-    selectFav ()//funcion para meter-sacar clicados en array
-    saveFav();//funcion para meter el array en localStorage (recuerda llamarlo arriba)
-    renderAnime (favourites, favListHTML); //render
+function handleFav (event) {
+    const idSelected = event.currentTarget.id;
+    const animeSelected = foundedAnimes.find((anime) => anime.id === idSelected);
+    const favSelected = favourites.findIndex ((fav) => fav.id === idSelected);
+
+    console.log(animeSelected);
+    console.log (favSelected);
+
+    if (favSelected === -1) {
+        favourites.push(animeSelected);
+    } else {
+        favourites.splice(favSelected, 1);
+    };
+
+    renderAnime(favourites, favListHTML);
 }
 
-//Eventos
+//Eventos globales
 
 buttonSearch.addEventListener('click', handleSearch);
 buttonReset.addEventListener('click', handleReset);
