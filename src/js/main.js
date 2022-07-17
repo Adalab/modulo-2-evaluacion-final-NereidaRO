@@ -20,15 +20,21 @@ let favourites = [];
 
 function writeAnime (array) {
     let html ='';
+
     for (const oneAnime of array){
-        html += `<li>
+        if (oneAnime.image === "https://cdn.myanimelist.net/img/sp/icon/apple-touch-icon-256.png") {
+            html += `<li>
+        <img src="https://via.placeholder.com/210x295/ffffff/666666/?text=TV" />
+        <h6>${oneAnime.title}<h6>
+        </li>`
+        } else {
+            html += `<li>
         <img src="${oneAnime.image}" />
         <h6>${oneAnime.title}<h6>
-        </li>`;
-    }
-    console.log(html);
-    return html;
-}
+        </li>`
+        }
+
+    };
 
 function renderAnime (array, list) {
     list.innerHTML = writeAnime(array);
