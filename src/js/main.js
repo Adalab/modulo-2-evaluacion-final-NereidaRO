@@ -16,7 +16,7 @@ const buttonReset = document.querySelector('.js-button-reset');
 let foundedAnimes = [];
 let favourites = [];
 
-//Al cargar la página
+//Lo que puede leerse al cargar la página
 
 function writeAnime (array) {
     let html ='';
@@ -35,6 +35,10 @@ function writeAnime (array) {
         }
 
     };
+
+    console.log(html);
+    return html;
+}
 
 function renderAnime (array, list) {
     list.innerHTML = writeAnime(array);
@@ -66,6 +70,11 @@ function handleSearch (event) {
     searchAnime ();
 }
 
+function handleReset(event){
+    event.preventDefault();
+};
+
 //Eventos
 
 buttonSearch.addEventListener('click', handleSearch);
+buttonReset.addEventListener('click', handleReset);
