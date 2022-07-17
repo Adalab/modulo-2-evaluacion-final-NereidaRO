@@ -11,6 +11,11 @@ const inputSearch = document.querySelector('.js-input-search');
 const buttonSearch = document.querySelector('.js-button-search');
 const buttonReset = document.querySelector('.js-button-reset');
 
+//Llamada al localStorage
+
+const saved = localStorage.getItem("saved");
+console.log(saved);
+
 //Arrays principales
 
 let foundedAnimes = [];
@@ -35,18 +40,24 @@ function writeAnime (array) {
         }
 
     };
-    function listenAnime () {
-        const liAnime = document.querySelector('.js-li-anime');
-        liAnime.addEventListener('click', handleFav);
-    };
     console.log(html);
     return html;
 }
 
 function renderAnime (array, list) {
     list.innerHTML = writeAnime(array);
+    function listenAnime () {
+        const liAnime = document.querySelector('.js-li-anime');
+        liAnime.addEventListener('click', handleFav);
+    };
     listenAnime();
 }
+
+function classifyFav () {};
+
+function selectFav () {}; //via los que tengan la clase y tal
+
+function saveFav () {};
 
 //Relacionado al servidor
 
@@ -80,10 +91,10 @@ function handleReset(event){
 }
 
 function handleFav () {
-    //funcion para meter-sacar clicados en array
-    //funcion para toggle la clase del destaca
-    //funcion para meter el array en localStorage (recuerda llamarlo arriba)
-    //render
+    classifyFav ()//funcion para toggle la clase del destaca
+    selectFav ()//funcion para meter-sacar clicados en array
+    saveFav();//funcion para meter el array en localStorage (recuerda llamarlo arriba)
+    renderAnime (favourites, favListHTML); //render
 }
 
 //Eventos
