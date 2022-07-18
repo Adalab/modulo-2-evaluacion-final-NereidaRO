@@ -63,11 +63,11 @@ function compareArray () {
     for(const li of liAnime){
        let liId = parseInt(li.id);
        const findFav = favourites.findIndex((fav) => fav.id === liId); /*si se cumple me da un número distinto de -1*/
-       console.log(findFav);
-       console.log(liId);
        if(findFav !== -1){
         li.classList.add("fav");
-       } 
+       } else {
+        li.classList.remove("fav");
+       }
     }
 }
 
@@ -153,8 +153,10 @@ function handleFav (event) {
     if (favSelected === -1) {
         favourites.push(animeSelected);
         console.log(favourites);
+        compareArray();
     } else {
         favourites.splice(favSelected, 1);
+        compareArray();
     };
     saveFav();
     renderFavs();
