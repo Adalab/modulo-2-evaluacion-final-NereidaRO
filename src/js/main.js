@@ -16,27 +16,25 @@ const savedFavs = JSON.parse(localStorage.getItem('saved'));
 let foundedAnimes = [];
 let favourites = [];
 
-//Descripción de funciones
+//Funciones para renderizar búsqueda y escuchadores
 
 function writeAnime () {
     let html ='';
 
     for (const oneAnime of foundedAnimes){
-        console.log(oneAnime.image);
       if (oneAnime.image === "https://cdn.myanimelist.net/img/sp/icon/apple-touch-icon-256.png") {
             html += `<li class="js-li-anime" id="${oneAnime.id}">
-        <img src="https://via.placeholder.com/210x295/ffffff/666666/?text=TV" />
+        <img class="main__img" src="https://via.placeholder.com/210x295/ffffff/666666/?text=TV" />
         <h6 class="main__h6">${oneAnime.title}</h6>
         </li>`
         } else {
             html += `<li class="js-li-anime" id="${oneAnime.id}">
-        <img src="${oneAnime.image}" />
+        <img class="main__img" src="${oneAnime.image}" />
         <h6 class="main__h6">${oneAnime.title}</h6>
         </li>`
         }};
     return html;
 }
-
 
 function listenAnime () {
     const liAnime = document.querySelectorAll('.js-li-anime');
@@ -49,6 +47,8 @@ function renderAnime () {
     searchListHTML.innerHTML = writeAnime();
     listenAnime();
 }
+
+//Función para guardar los favoritos
 
 function saveFav () {
     if (savedFavs === null){
@@ -77,15 +77,14 @@ function writeFavs () {
     let html ='';
 
     for (const oneFav of favourites){
-        console.log(oneFav.image);
       if (oneFav.image === "https://cdn.myanimelist.net/img/sp/icon/apple-touch-icon-256.png") {
             html += `<li class="js-li-fav" id="${oneFav.id}">
-        <img src="https://via.placeholder.com/210x295/ffffff/666666/?text=TV" />
+        <img class="main__img" src="https://via.placeholder.com/210x295/ffffff/666666/?text=TV" />
         <h6 class="main__h6">${oneFav.title}</h6>
         </li>`
         } else {
             html += `<li class="js-li-fav" id="${oneFav.id}">
-        <img src="${oneFav.image}" />
+        <img class="main__img" src="${oneFav.image}" />
         <h6 class="main__h6">${oneFav.title}</h6>
         </li>`
         }};

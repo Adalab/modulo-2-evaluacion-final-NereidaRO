@@ -1,14 +1,21 @@
 /*para las clases hechas con JS*/
 
-.fav{
-    background-color: $text;
-    color: $background-color;
-}
-
 .main{
     &__h6{
         padding-top: 10px;
         padding-bottom: 10px;
         color: $text;
+    }
+
+    &__img{
+        padding: 10px;
+    }
+}
+
+.fav{
+    background-color: $text;
+
+    .main__h6{
+        color: $background-button;
     }
 }
