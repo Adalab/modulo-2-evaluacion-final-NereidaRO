@@ -26,16 +26,19 @@ let favourites = [];
 function writeAnime (array) {
     let html ='';
 
+    //console.log(array.image);
+
     for (const oneAnime of array){
-        if (oneAnime.image === "https://cdn.myanimelist.net/img/sp/icon/apple-touch-icon-256.png") {
-            html += `<li class="main__li js-li-anime">
+        console.log(oneAnime.image);
+      if (oneAnime.image === "https://cdn.myanimelist.net/img/sp/icon/apple-touch-icon-256.png") {
+            html += `<li class="js-li-anime" id="${oneAnime.id}">
         <img src="https://via.placeholder.com/210x295/ffffff/666666/?text=TV" />
-        <h6 class="main__h6">${oneAnime.title}<h6>
+        <h6>${oneAnime.title}<h6>
         </li>`
         } else {
-            html += `<li class="main__li js-li-anime">
+            html += `<li class="js-li-anime" id="${oneAnime.id}">
         <img src="${oneAnime.image}" />
-        <h6 class="main__h6">${oneAnime.title}<h6>
+        <h6>${oneAnime.title}<h6>
         </li>`
         }
 
@@ -44,16 +47,17 @@ function writeAnime (array) {
     return html;
 }
 
-function listenAnime (array) {
-    for (const oneAnime of array){
+function listenAnime () {
+    const liAnime = document.querySelectorAll('.js-li-anime');
+    for (const oneAnime of liAnime){
         oneAnime.addEventListener('click', handleFav);
     };
-}; //dice que no es una función: duda GitHub
+};
 
 function renderAnime (array, list) {
     list.innerHTML = writeAnime(array);
-    listenAnime(array);
-} //supuestamente tienen el listener: duda en GitHub
+    listenAnime();
+}
 
 //Relacionado al servidor
 
@@ -82,23 +86,22 @@ function handleSearch (event) {
 
 function handleReset(event){
     event.preventDefault();
-    //duda en GitHub Project
 }
 
 function handleFav (event) {
     const idSelected = event.currentTarget.id;
-    const animeSelected = foundedAnimes.find((anime) => anime.id === idSelected);
-    const favSelected = favourites.findIndex ((fav) => fav.id === idSelected);
+    const animeSelected = foundedAnimes.find((anime) => anime.id === parseInt(idSelected));
+    const favSelected = favourites.findIndex ((fav) => fav.id === parseInt(idSelected));
 
     console.log(animeSelected);
     console.log (favSelected);
 
     if (favSelected === -1) {
         favourites.push(animeSelected);
+        console.log(favourites);
     } else {
         favourites.splice(favSelected, 1);
     };
-    console.log(favourites);
     renderAnime(favourites, favListHTML);
 }
 
