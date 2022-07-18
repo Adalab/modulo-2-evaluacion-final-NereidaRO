@@ -1,7 +1,9 @@
 .main{
-    background-color: $background-color;
+    background-image: url("./assets/images/sakura-alex.png");
     background-repeat: no-repeat;
+    background-position: left bottom;
     min-height: 80vh;
+    
 
     &__form{
         padding-left: 5%;
