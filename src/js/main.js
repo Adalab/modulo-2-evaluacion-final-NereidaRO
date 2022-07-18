@@ -6,15 +6,21 @@ console.log('The script is linked!');
 
 const searchListHTML = document.querySelector('.js-search-list');
 const favListHTML = document.querySelector('.js-fav-list');
-const form = document.querySelector('.js-form');
 const inputSearch = document.querySelector('.js-input-search');
 const buttonSearch = document.querySelector('.js-button-search');
 const buttonReset = document.querySelector('.js-button-reset');
+const savedFavs = JSON.parse(localStorage.getItem('saved'));
 
 //Llamada al localStorage
 
-/*const saved = localStorage.getItem("saved");
-console.log(saved);*/
+function onLoad () {
+    if(savedFavs){
+        favourites = savedFavs
+        renderAnime(favourites, favListHTML);
+    } 
+}
+onLoad();
+
 
 //Arrays principales
 
@@ -43,7 +49,6 @@ function writeAnime (array) {
         }
 
     };
-    console.log(html);
     return html;
 }
 
@@ -57,6 +62,12 @@ function listenAnime () {
 function renderAnime (array, list) {
     list.innerHTML = writeAnime(array);
     listenAnime();
+}
+
+function saveFav () {
+    if (savedFavs === null){
+        localStorage.setItem("saved", JSON.stringify(favourites));
+    }
 }
 
 //Relacionado al servidor
@@ -86,6 +97,10 @@ function handleSearch (event) {
 
 function handleReset(event){
     event.preventDefault();
+    localStorage.removeItem("savedFavs");
+    foundedAnimes = [];
+    favourites = [];
+    inputSearch.value = '';
 }
 
 function handleFav (event) {
@@ -102,6 +117,7 @@ function handleFav (event) {
     } else {
         favourites.splice(favSelected, 1);
     };
+    saveFav();
     renderAnime(favourites, favListHTML);
 }
 
