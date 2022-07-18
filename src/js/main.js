@@ -11,6 +11,11 @@ const buttonSearch = document.querySelector('.js-button-search');
 const buttonReset = document.querySelector('.js-button-reset');
 const savedFavs = JSON.parse(localStorage.getItem('saved'));
 
+//Arrays principales
+
+let foundedAnimes = [];
+let favourites = [];
+
 //Llamada al localStorage
 
 function onLoad () {
@@ -20,12 +25,6 @@ function onLoad () {
     } 
 }
 onLoad();
-
-
-//Arrays principales
-
-let foundedAnimes = [];
-let favourites = [];
 
 //Lo que puede leerse al cargar la página
 
@@ -97,10 +96,12 @@ function handleSearch (event) {
 
 function handleReset(event){
     event.preventDefault();
-    localStorage.removeItem("savedFavs");
+    localStorage.clear();
     foundedAnimes = [];
     favourites = [];
     inputSearch.value = '';
+    renderAnime(favourites, favListHTML);
+    renderAnime(foundedAnimes, searchListHTML);
 }
 
 function handleFav (event) {
