@@ -1,6 +1,6 @@
 'use strict';
 
-console.log('The script is linked!');
+console.log('The script is linked');
 
 //Variables globales
 
