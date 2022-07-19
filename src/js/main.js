@@ -1,6 +1,6 @@
 'use strict';
 
-console.log('The script is linked');
+console.log('The script is linked!');
 
 //Variables globales
 
@@ -94,7 +94,6 @@ function writeFavs () {
 
 function renderFavs () {
     favListHTML.innerHTML = writeFavs();
-    listenAnime();
     const iconArray = document.querySelectorAll('.js-x');
     console.log(iconArray);
     listenIcons(iconArray);
@@ -186,11 +185,10 @@ function handleIcon (event) {
     
     saveFav();
     renderFavs();
+    compareArray();
 }
 
 //Eventos globales
 
 buttonSearch.addEventListener('click', handleSearch);
 buttonReset.addEventListener('click', handleReset);
-
-//emergency commit 2
