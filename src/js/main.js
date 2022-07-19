@@ -51,10 +51,8 @@ function renderAnime () {
 //Función para guardar los favoritos
 
 function saveFav () {
-    if (savedFavs === null){
-        localStorage.setItem("saved", JSON.stringify(favourites));
-    }
-}
+        localStorage.setItem("saved", JSON.stringify(favourites)); //si ya existe, la machaca y le pone lo nuevo
+} //hay que llamarla en dos ocasiones: poner un favorito y quitarlo
 
 //Función para destacar favoritos en la lista de resultados de búsqueda
 
@@ -174,10 +172,8 @@ function handleFav (event) {
 function handleIcon (event) {
     const idSelected = parseInt(event.currentTarget.id);
     console.log(idSelected);
-    const iconSelected = favourites.find((favourite)=> favourite.id === idSelected);
-    console.log(iconSelected); //para ver si el icono que ha seleccionado está en favoritos
-    const iconXIndex = favourites.findIndex((favourite)=> favourite.id === idSelected);
-    console.log(iconXIndex);
+    const iconXIndex = favourites.findIndex((favourite) => favourite.id === idSelected);
+    console.log(iconXIndex); //para poder hacer el splice (como en ej paletas y en compareArray)
 
     if(iconXIndex !== -1){
         favourites.splice(iconXIndex, 1);
