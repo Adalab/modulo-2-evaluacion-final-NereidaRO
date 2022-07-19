@@ -21,6 +21,8 @@ Por otro lado, es capaz de guardar una segunda lista con las series y películas
 
 Este trabajo no cuenta con licencia, ya que se trata de un ejercicio de entrenamiento para aprender programación web en el bootcamp de Adalab.
 
+El dibujo de una rama de cerezo que se encuentra en la cabecera es de Horea Alexandru Maghear.
+
 5. Autores
 
 Nereida Rodríguez Orenes, estudiante de la Promoción Quirós del Bootcamp de Programación Web de Adalab.
