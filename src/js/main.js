@@ -71,29 +71,39 @@ function compareArray () {
     }
 }
 
-//Renderización de favoritos
+//Renderización de favoritos y las X
 
 function writeFavs () {
     let html ='';
 
     for (const oneFav of favourites){
       if (oneFav.image === "https://cdn.myanimelist.net/img/sp/icon/apple-touch-icon-256.png") {
-            html += `<li class="js-li-fav" id="${oneFav.id}">
+            html += `<li class="js-li-fav" id="${oneFav.id}"><i class="js-x fa-solid fa-xmark" id="${oneFav.id}"></i>
         <img class="main__img" src="https://via.placeholder.com/210x295/ffffff/666666/?text=TV" />
         <h6 class="main__h6">${oneFav.title}</h6>
         </li>`
         } else {
-            html += `<li class="js-li-fav" id="${oneFav.id}">
+            html += `<li class="js-li-fav" id="${oneFav.id}"><i class="js-x fa-solid fa-xmark" id="${oneFav.id}"></i>
         <img class="main__img" src="${oneFav.image}" />
         <h6 class="main__h6">${oneFav.title}</h6>
         </li>`
         }};
+
     return html;
 }
 
 function renderFavs () {
     favListHTML.innerHTML = writeFavs();
     listenAnime();
+    const iconArray = document.querySelectorAll('.js-x');
+    console.log(iconArray);
+    listenIcons(iconArray);
+}
+
+function listenIcons (iconArray) {
+    for (const icon of iconArray) {
+        icon.addEventListener('click', handleIcon);
+      }
 }
 
 //Llamada al localStorage
@@ -158,6 +168,22 @@ function handleFav (event) {
         favourites.splice(favSelected, 1);
         compareArray();
     };
+    saveFav();
+    renderFavs();
+}
+
+function handleIcon (event) {
+    const idSelected = parseInt(event.currentTarget.id);
+    console.log(idSelected);
+    const iconSelected = favourites.find((favourite)=> favourite.id === idSelected);
+    console.log(iconSelected); //para ver si el icono que ha seleccionado está en favoritos
+    const iconXIndex = favourites.findIndex((favourite)=> favourite.id === idSelected);
+    console.log(iconXIndex);
+
+    if(iconXIndex !== -1){
+        favourites.splice(iconXIndex, 1);
+      }
+    
     saveFav();
     renderFavs();
 }
