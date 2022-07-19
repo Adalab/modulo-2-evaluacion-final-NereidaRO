@@ -166,3 +166,5 @@ function handleFav (event) {
 
 buttonSearch.addEventListener('click', handleSearch);
 buttonReset.addEventListener('click', handleReset);
+
+//emergency commit 2
