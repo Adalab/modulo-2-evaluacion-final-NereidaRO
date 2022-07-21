@@ -26,13 +26,25 @@ function writeAnime () {
             html += `<li class="js-li-anime" id="${oneAnime.id}">
         <img class="main__img" src="https://via.placeholder.com/210x295/ffffff/666666/?text=TV" />
         <h6 class="main__h6">${oneAnime.title}</h6>
+        ${isAiring(oneAnime)};
         </li>`
         } else {
             html += `<li class="js-li-anime" id="${oneAnime.id}">
         <img class="main__img" src="${oneAnime.image}" />
         <h6 class="main__h6">${oneAnime.title}</h6>
+        ${isAiring(oneAnime)}
         </li>`
         }};
+    return html;
+}
+
+function isAiring (oneAnime) {
+    let html ='';
+        if(oneAnime.airing){
+            html += `<a href=${oneAnime.url}>Más detalles</a>`;
+        } else {
+            html += `No está en emisión`;
+        }
     return html;
 }
 
@@ -95,12 +107,19 @@ function renderFavs () {
     const iconArray = document.querySelectorAll('.js-x');
     console.log(iconArray);
     listenIcons(iconArray);
+    listenFav();
 }
 
 function listenIcons (iconArray) {
     for (const icon of iconArray) {
         icon.addEventListener('click', handleIcon);
       }
+}
+
+function listenFav () {
+    const liFav = document.querySelectorAll('.js-li-fav');
+    for (const fav of liFav)
+    fav.addEventListener('click', handleConsole);
 }
 
 //Llamada al localStorage
@@ -121,10 +140,12 @@ function searchAnime () {
     .then ((response) => response.json())
     .then ((dataReturned) => {
         let dataAnimes = dataReturned.data;
-        foundedAnimes = dataAnimes.map(({ mal_id, title, images }) => ({
+        foundedAnimes = dataAnimes.map(({ mal_id, title, images, airing, url }) => ({
             id: mal_id,
             title: title,
             image: images.jpg.image_url,
+            airing: airing,
+            url: url,
           }));
         console.log(foundedAnimes);
         renderAnime();
@@ -177,11 +198,20 @@ function handleIcon (event) {
 
     if(iconXIndex !== -1){
         favourites.splice(iconXIndex, 1);
-      }
+    }
     
     saveFav();
     renderFavs();
     compareArray();
+}
+
+function handleConsole (ev) {
+    const targetFav = parseInt(ev.currentTarget.id);
+    const titleSelected = favourites.findIndex ((favourite) => favourite.id === targetFav);
+    if(titleSelected !== -1) {
+        console.log(titleSelected);
+        console.log(favourites[titleSelected].title);
+    };
 }
 
 //Eventos globales
