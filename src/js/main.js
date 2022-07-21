@@ -214,7 +214,7 @@ function handleConsole (ev) {
     };
 }
 
-//Eventos globales
+//Eventos globales!
 
 buttonSearch.addEventListener('click', handleSearch);
 buttonReset.addEventListener('click', handleReset);
