@@ -20,6 +20,10 @@
         color: $text;
     }
 
+    &__search:hover, &__reset:hover{
+        background-color: $background-color;
+    }
+
     &__section{
         display: grid;
         grid-template-columns: 1fr 1fr;
