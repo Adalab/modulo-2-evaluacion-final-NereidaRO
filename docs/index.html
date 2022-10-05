@@ -3,18 +3,25 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title></title>
-    <link rel="stylesheet" href="./assets/css/main.css" />
-    <link rel="icon" href="./assets/images/favicon.png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;600;900&display=swap" rel="stylesheet">
+    <title>Buscador de Anime</title>
     <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
-    integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"
+      rel="icon"
+      type="image/x-icon"
+      href="/public/assets/images/favicon.ico"
+    />
+    <link rel="stylesheet" href="./assets/css/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;600;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
     />
   </head>
 
@@ -24,9 +31,21 @@
     </header>
     <main class="main">
       <form class="main__form js-form">
-        <input class="main__user js-input-search" type="text" placeholder="p.ej: Cosmo Samurai">
-        <input class="main__search js-button-search" type="submit" value="Buscar">
-        <input class="main__reset js-button-reset" type="submit" value="Reset">
+        <input
+          class="main__user js-input-search"
+          type="text"
+          placeholder="p.ej: Cosmo Samurai"
+        />
+        <input
+          class="main__search js-button-search"
+          type="submit"
+          value="Buscar"
+        />
+        <input
+          class="main__reset js-button-reset"
+          type="submit"
+          value="Reset"
+        />
       </form>
       <section class="main__section">
         <article class="main__article--fav">
@@ -38,8 +57,6 @@
           <ul class="js-search-list"></ul>
         </article>
       </section>
-      
-      
     </main>
     <script type="text/javascript" src="./assets/js/main.js"></script>
   </body>
